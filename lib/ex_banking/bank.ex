@@ -17,7 +17,6 @@ defmodule ExBanking.Bank do
   def create_user(username) when is_binary(username) do
     case UserSupervisor.create_user(username) do
       :ok ->
-        UserStore.create(username)
         :ok
 
       {:error, :already_started} ->

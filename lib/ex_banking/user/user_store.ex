@@ -16,6 +16,11 @@ defmodule ExBanking.User.UserStore do
 
   def threshold, do: @threshold
 
+  @doc """
+  Creates a new user or replaces the existing one.
+  This is wanted, to allow UserWorker to initialize its queue in case of
+  abnormal restarts
+  """
   @spec create(username :: String.t()) :: :ok
   def create(username) do
     :ets.insert(@table, {username, 0})

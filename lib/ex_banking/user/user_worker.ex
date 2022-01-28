@@ -61,6 +61,8 @@ defmodule ExBanking.User.UserWorker do
   @impl true
   def init(username) do
     Logger.info("Starting manager for User [#{username}]")
+    # Let's hard-reset our queue count, just in case we have just died
+    UserStore.create(username)
     {:ok, User.new(username)}
   end
 
